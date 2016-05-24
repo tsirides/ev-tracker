@@ -160,6 +160,7 @@ var Tracker = (function (self) {
                 self.stats[k] = 0;
                 document.getElementById(k + '-input').value = 0;
                 document.getElementById(k + '-bar').style.height = 0;
+                document.getElementById('ev-total').innerHTML = 'EVs Remaining: 510/510';
             });
             break;
         case 'undo':
