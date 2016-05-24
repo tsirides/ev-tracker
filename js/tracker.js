@@ -33,11 +33,10 @@ var Tracker = (function (self) {
         var id = event.currentTarget.parentNode.id,
             request = +event.currentTarget.innerHTML ||
                 (-self.stats[id] + (+event.currentTarget.value)),
+            total = 0,
             
             // check total EV limits (n <= 510)
             oLimits = function (request) {
-                
-                var total = 0;
                 
                 Object.keys(self.stats).forEach(function (k) { total += self.stats[k]; });
                 
@@ -64,6 +63,8 @@ var Tracker = (function (self) {
         self.stats[id] += validRequest;
         document.getElementById(id + '-bar').style.height = ((self.stats[id] / 252) * 95 + 5) + 'px';
         document.getElementById(id + '-input').value = self.stats[id];
+        document.getElementById('ev-total').innerHTML =
+            'EVs Remaining: ' + (510 - (total + validRequest)) + '/510';
         
         if (!undo && validRequest !== 0) {
             self.log.push({
