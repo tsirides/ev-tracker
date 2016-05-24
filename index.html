@@ -24,7 +24,7 @@
         <div class="wrapper">
             <div class="row">
                 <div class="tracker">
-                    <div class="tracker-buttons">
+                    <div id="help-buttons" class="tracker-buttons">
                         <div id="mode" class="button">Switch to Super Training</div>
                         <div id="reset" class="button">Reset All</div>
                         <div id="undo" class="button">Undo</div>
@@ -32,50 +32,50 @@
                     <div id="hp" class="stat">
                         <div class="name">HP</div>
                         <input id="hp-input" class="ev-input" type="text" value="0" />
-                        <div class="button ev-button add-1">+1</div>
-                        <div class="button ev-button add-2">+2</div>
-                        <div class="button ev-button add-3">+3</div>
-                        <div class="button ev-button remove-10">-10</div>
+                        <div class="button ev-button add-1" data-value="1">+1</div>
+                        <div class="button ev-button" data-value="2">+2</div>
+                        <div class="button ev-button" data-value="3">+3</div>
+                        <div class="button ev-button" data-value="10">-10</div>
                     </div>
                     <div id="atk" class="stat">
                         <div class="name">At<span>tac</span>k</div>
                         <input id="atk-input" class="ev-input" type="text" value="0" />
-                        <div class="button ev-button add-1">+1</div>
-                        <div class="button ev-button add-2">+2</div>
-                        <div class="button ev-button add-3">+3</div>
-                        <div class="button ev-button remove-10">-10</div>
+                        <div class="button ev-button add-1" data-value="1">+1</div>
+                        <div class="button ev-button" data-value="2">+2</div>
+                        <div class="button ev-button" data-value="3">+3</div>
+                        <div class="button ev-button" data-value="10">-10</div>
                     </div>
                     <div id="def" class="stat">
                         <div class="name">Def<span>ense</span></div>
                         <input id="def-input"  class="ev-input" type="text" value="0" />
-                        <div class="button ev-button add-1">+1</div>
-                        <div class="button ev-button add-2">+2</div>
-                        <div class="button ev-button add-3">+3</div>
-                        <div class="button ev-button remove-10">-10</div>
+                        <div class="button ev-button add-1" data-value="1">+1</div>
+                        <div class="button ev-button" data-value="2">+2</div>
+                        <div class="button ev-button" data-value="3">+3</div>
+                        <div class="button ev-button" data-value="10">-10</div>
                     </div>
                     <div id="spatk" class="stat">
                         <div class="name">S<span>p</span>.<span> </span>At<span>tac</span>k</div>
                         <input id="spatk-input" class="ev-input" type="text" value="0" />
-                        <div class="button ev-button add-1">+1</div>
-                        <div class="button ev-button add-2">+2</div>
-                        <div class="button ev-button add-3">+3</div>
-                        <div class="button ev-button remove-10">-10</div>
+                        <div class="button ev-button add-1" data-value="1">+1</div>
+                        <div class="button ev-button" data-value="2">+2</div>
+                        <div class="button ev-button" data-value="3">+3</div>
+                        <div class="button ev-button" data-value="10">-10</div>
                     </div>
                     <div id="spdef" class="stat">
                         <div class="name">S<span>p</span>.<span> </span>Def<span>ense</span></div>
                         <input id="spdef-input" class="ev-input" type="text" value="0" />
-                        <div class="button ev-button add-1">+1</div>
-                        <div class="button ev-button add-2">+2</div>
-                        <div class="button ev-button add-3">+3</div>
-                        <div class="button ev-button remove-10">-10</div>
+                        <div class="button ev-button add-1" data-value="1">+1</div>
+                        <div class="button ev-button" data-value="2">+2</div>
+                        <div class="button ev-button" data-value="3">+3</div>
+                        <div class="button ev-button" data-value="10">-10</div>
                     </div>
                     <div id="speed" class="stat">
                         <div class="name">Sp<span>ee</span>d</div>
                         <input id="speed-input" class="ev-input" type="text" value="0" />
-                        <div class="button ev-button add-1">+1</div>
-                        <div class="button ev-button add-2">+2</div>
-                        <div class="button ev-button add-3">+3</div>
-                        <div class="button ev-button remove-10">-10</div>
+                        <div class="button ev-button add-1" data-value="1">+1</div>
+                        <div class="button ev-button" data-value="2">+2</div>
+                        <div class="button ev-button" data-value="3">+3</div>
+                        <div class="button ev-button" data-value="10">-10</div>
                     </div>
                 </div>
                 <div class="panel">
@@ -108,7 +108,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="multipliers">
+                    <div id="modifiers" class="multipliers">
                         <div class="title"><h2>Multipliers</h2></div>
                         <div id="pokerus" class="multiplier-toggle">
                             <div class="name">Pok&eacute;rus (2x)</div>

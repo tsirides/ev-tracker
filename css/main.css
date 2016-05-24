@@ -117,7 +117,7 @@ a { text-decoration: none; color: #777; }
     transition: .1s background-color ease;
     cursor: pointer;
 }
-.stat .button.remove-10 { float: right; background-color: #aaa; }
+.stat .button:last-child { float: right; background-color: #aaa; }
 .stat .button:hover { background-color: #555; }
 
 .panel { width: 33.3%; float: left; }
@@ -149,7 +149,26 @@ a { text-decoration: none; color: #777; }
 }
 .visual .bar-wrapper .legend { width: 100%; position: absolute; bottom: 0; left: 0; }
 
+.multipliers {
+    position: relative;
+}
+.multipliers.off { cursor: help; }
+.multipliers.off:hover:after {
+    content: 'Multipliers only affect EV gains through battle.';
+    display: block;
+    position: absolute;
+    z-index: 10;
+    padding: 5px 10px;
+    width: 200px;
+    top: 50%;
+    left: calc(50% - 100px);
+    background-color: #fff;
+    box-shadow: 0 0 2px #000;
+}
 .multiplier-toggle { margin-bottom: 11px; }
+.multipliers.off .multiplier-toggle{
+    opacity: .3;
+}
 .multiplier-toggle:after { content: ''; display: block; clear: both; }
 .multiplier-toggle .name {
     float: left;
@@ -166,7 +185,9 @@ a { text-decoration: none; color: #777; }
     height: 25px;
     background-color: #d27b7b;
     cursor: pointer;
+    position: relative;
 }
+.multipliers.off .multiplier-toggle .switch { cursor: help; }
 .multiplier-toggle.on .switch {
     text-align: right;
     background-color: #69af69;
@@ -278,7 +299,7 @@ a { text-decoration: none; color: #777; }
     
     .tracker .stat .button { margin-left: 5px; }
     .tracker .stat .button.add-1 { margin-left: calc(100% - 282px); }
-    .tracker .stat .button.remove-10 { display: none; }
+    .tracker .stat .button:last-child { display: none; }
     
 }
 
