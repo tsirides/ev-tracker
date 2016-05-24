@@ -79,7 +79,7 @@ var Tracker = (function (self) {
 
     };
     
-    // update html buttons based on current state - called by toggleModifier and modeSwitch
+    // update html buttons based on current state - called by updateModifier and updateState
     self.updateButtons = function () {
         
         var pokerus = (self.modifiers.pokerus) ? 2 : 1,
@@ -175,25 +175,16 @@ var Tracker = (function (self) {
     // intializes the tracker with event listeners
     self.build = function () {
         
-        // manual keyboard input
-        Object.keys(self.inputs).forEach(function (k) {
-            self.inputs[k].addEventListener('keyup', self.updateValues);
-        });
-
-        // clicking +1, +2, +3, and -10 buttons
-        Object.keys(self.buttons).forEach(function (k) {
-            self.self.buttons[k].addEventListener('click', self.updateValues);
-        });
-
-        // clicking multipliers
-        Object.keys(self.toggles).forEach(function (k) {
-            self.toggles[k].addEventListener('click', self.updateModifier);
-        });
-
-        // clicking mode switch, undo, and reset
-        Object.keys(self.tools).forEach(function (k) {
-            self.tools[k].addEventListener('click', self.updateState);
-        });
+        var addListeners = function (elements, type, handler) {
+            Object.keys(elements).forEach(function (k) {
+                elements[k].addEventListener(type, handler);
+            });
+        };
+        
+        addListeners(self.inputs, 'keyup', self.updateValues);
+        addListeners(self.buttons, 'click', self.updateValues);
+        addListeners(self.toggles, 'click', self.updateModifier);
+        addListeners(self.tools, 'click', self.updateState);
 
     };
 
