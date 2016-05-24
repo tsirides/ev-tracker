@@ -1,293 +1,204 @@
-document.addEventListener("DOMContentLoaded", function() { 
-    
-    'use strict';
-    
-    var counter = {'hp': 0, 'atk': 0, 'def': 0, 'spatk': 0, 'spdef': 0, 'speed': 0},
-        modifiers = {'pokerus': 0, 'brace': 0, 'power': 0, 'hordes': 0},
-        altMode = false,
-        log = [];
-    
-    
-    // associative arrays for all interactable classes ----------------------
-    
-    var add1Buttons = document.getElementsByClassName("add-1"),
-        add2Buttons = document.getElementsByClassName("add-2"),
-        add3Buttons = document.getElementsByClassName("add-3"),
-        allButtons = document.getElementsByClassName("ev-button"),
-        modifierToggles = document.getElementsByClassName("multiplier-toggle"),
-        manualInputs = document.getElementsByClassName("ev-input");
-    
-    // add event handlers ---------------------------
-    
-    document.getElementById("mode").onclick = switchMode;
-    document.getElementById("reset").onclick = reset;
-    document.getElementById("undo").onclick = undo;
-    
-    for (var i = 0, j = allButtons.length; i < j; i++) {
-        allButtons[i].onclick = changeEVs;
-    }
-    
-    for (var i = 0, j = modifierToggles.length; i < j; i++) {
-        modifierToggles[i].onclick = toggleModifier;
-    }
-    
-    for (var i = 0, j = manualInputs.length; i < j; i++) {
-        manualInputs[i].onkeyup = manualOverride;
-    }
-    
-    // Functions for buttons at the top of the page --------------------------
-    // Mode Switch, Undo, and Reset All 
-    
-    function switchMode() {
-        
-        this.innerHTML = (altMode) ? "Switch to Super Training" : "Switch to Battle Training";
-        altMode = (altMode) ? false : true;
-        
-        updateButtons();
-        
-    }
-    
-    
-    function reset() {
-        
-        var stat;
-        
-        for (stat in counter) {
-            counter[stat] = 0;
-        }
-        
-        log = [];
-        
-        updateAll();
-        
-    }
-    
-    function undo() {
-        
-        var lastAction = log.pop();
-        
-        if (lastAction){
-            var operators = {
-                    '-': function (stat, val) { addEVs(stat, val); },
-                    '+': function (stat, val) { removeEVs(stat, val); }
-                },
-                logEntry = lastAction.split(':'),
-                stat = logEntry[0], // gets stat name
-                op = logEntry[1][0], // gets operator and value
-                val = logEntry[1].slice(1, logEntry[1].length); // removes operator from value
+var Tracker = (function (self) {
 
-                operators[op](stat, val);
-                updateGraph(stat);
-                updateRemaining();
-        }
-        
-    }
+    'use strict';
+
+    // define default state of tracker
+    self.mode = true;
+    self.log = [];
+    self.stats = {
+        hp: 0,
+        atk: 0,
+        def: 0,
+        spatk: 0,
+        spdef: 0,
+        speed: 0
+    };
+    self.modifiers = {
+        pokerus: false,
+        hordes: false,
+        brace: false,
+        power: false
+    };
     
+    // references for elements that need listeners
+    self.inputs = document.getElementsByClassName('ev-input');
+    self.buttons = document.getElementsByClassName('ev-button');
+    self.toggles = document.getElementsByClassName('multiplier-toggle');
+    self.tools = document.getElementById('help-buttons').children;
     
-    // Functions called by event handlers --------------------------------------
-    // Toggle Modifiers, EV +/- buttons, and manual input
-    
-    function toggleModifier() {
+    // callback for changing EVs (buttons, inputs, and undo)
+    self.updateValues = function (event, undo) {
         
-        var type = this.id,
-            newClass = 'multiplier-toggle' + ((modifiers[type]) ? '' : ' on');
-        
-        if (type === 'power' || type === 'brace') {
-            itemOverlapCheck(type);
-        }
-        
-        modifiers[type] = (modifiers[type]) ? 0 : 1;
-        
-        changeClass(type, newClass);
-        updateButtons();
-        
-    }
-    
-    function changeEVs() {
-        
-        var operators = { // easiest way I could think of to call different functions based on buttons
-            '+': function (stat, v) { addEVs(stat, v); },
-            '-': function (stat, v) { removeEVs(stat, v); }
-        },
-            stat = this.parentNode.id,
-            v = this.innerHTML,
-            val = checkLimits(stat, v);
-        
-        operators[v[0]](stat, val);
-        
-        updateGraph(stat);
-        updateRemaining();
-        
-        if (val) {
-            log.push(stat + ":" + v[0] + val);
-        }
-        
-    }
-    
-    function manualOverride() {
-        
-        var stat = this.parentNode.id,
-            eName = stat + '-input',
-            newValue = this.value;
-        
-        if (newValue % 1 === 0) { // makes sure isn't NaN or some annoying value
-            var val = newValue - counter[stat],
-                change = (val > 0) ? ('+' + val) : ('-' + val);
-            val = checkLimits(stat, change);
-            counter[stat] += val;
-        }
-        
-        changeValue(eName, counter[stat]);
-        updateGraph(stat);
-        updateRemaining();
-        
-        if (val) {
-            log.push(stat + ":+" + val);
-        }
-        
-    }
-    
-    
-    // Helper functions -----------------------------------
-    
-    function itemOverlapCheck(type) { // power items / macho brace are mutually exlusive
-        
-        if (type === 'brace') {
+        // get event information
+        var id = event.currentTarget.parentNode.id,
+            request = +event.currentTarget.innerHTML ||
+                (-self.stats[id] + (+event.currentTarget.value)),
             
-            modifiers.power = 0;
-            changeClass('power', 'multiplier-toggle');
+            // check total EV limits (n <= 510)
+            oLimits = function (request) {
+                
+                var total = 0;
+                
+                Object.keys(self.stats).forEach(function (k) { total += self.stats[k]; });
+                
+                return (total + request <= 510) ? request : (510 - total);
+                
+            },
             
-        } else {
+            // check single EV limits (0 - 252)
+            sLimits = function (request) {
+                
+                var oRequest = oLimits(request),
+                    net = self.stats[id] + oRequest;
+                
+                //alert(oLimits(request));
+                
+                return (net < 0) ? -self.stats[id] :
+                        ((net > 252) ? (252 - self.stats[id]) : oRequest);
+                
+            },
             
-            modifiers.brace = 0;
-            changeClass('brace', 'multiplier-toggle');
+            validRequest = (request % 1 === 0) ? sLimits(request) : 0;
+        
+        // update logs and visuals
+        self.stats[id] += validRequest;
+        document.getElementById(id + '-bar').style.height = ((self.stats[id] / 252) * 95 + 5) + 'px';
+        document.getElementById(id + '-input').value = self.stats[id];
+        
+        if (!undo && validRequest !== 0) {
+            self.log.push({
+                currentTarget: {
+                    parentNode: {
+                        id: id
+                    },
+                    innerHTML: -validRequest
+                }
+            });
+        }
+
+    };
+    
+    // update html buttons based on current state - called by toggleModifier and modeSwitch
+    self.updateButtons = function () {
+        
+        var pokerus = (self.modifiers.pokerus) ? 2 : 1,
+            hordes = (self.modifiers.hordes) ? 5 : 1,
+            brace = (self.modifiers.brace) ? 2 : 1,
+            power = (self.modifiers.power) ? 4 : 0,
+            
+            battleUpdater = function (value) {
+                return '+' + (value + power) * pokerus * hordes * brace;
+            },
+            
+            superUpdater = function (value) {
+                return '+' + (value * 4);
+            };
+        
+        Object.keys(self.buttons).forEach(function (k) {
+            var v = +self.buttons[k].getAttribute('data-value');
+            if (v !== 10) {
+                self.buttons[k].innerHTML = (self.mode) ? battleUpdater(v) : superUpdater(v);
+            }
+        });
+        
+    };
+    
+    // callback for multiplier toggle switches
+    self.updateModifier = function (event) {
+        
+        var id = event.currentTarget.id,
+            
+            // check for id and prevent mutually exclusive modifiers from overlapping 
+            check = function (identifier) {
+                
+                switch (identifier) {
+                case 'pokerus':
+                    break;
+                case 'brace':
+                    self.modifiers.power = false;
+                    document.getElementById('power').className = 'multiplier-toggle';
+                    break;
+                case 'power':
+                    self.modifiers.brace = false;
+                    document.getElementById('brace').className = 'multiplier-toggle';
+                    break;
+                case 'hordes':
+                    break;
+                default:
+                    return false;
+                }
+                
+                return true;
+                
+            };
+            
+        if (check(id)) {
+            
+            self.modifiers[id] = !self.modifiers[id];
+            this.className =
+                (self.modifiers[id]) ? 'multiplier-toggle on' : 'multiplier-toggle';
+            
+            return self.updateButtons();
             
         }
         
-    }
+    };
     
-    // makes sure values are valid (0 to 255 in a single stat, 0 to 510 total)
-    // still needs to return partial values to hit max values though, 
-    // so it's a little more complicated than just checking the direct input
-    
-    function checkLimits(stat, v) {
+    // callback for helper buttons - mode switch, undo, and reset
+    self.updateState = function (event) {
         
-        var operators = {
-            '+': function (stat, val) { return 252 - (counter[stat] + val); }, // check positive inputs
-            '-': function (stat, val) { return counter[stat] - val; } // check negative inputs
-        },
-            val = +v.slice(1, v.length), // remove non-number character from button input
-            request = operators[v[0]](stat, val),
-            total = updateTotal();
+        var id = event.currentTarget.id;
         
-        // nothing to change with input if var request is positive, otherwise get amount needed to max
-        val = (request > 0) ? val : (val - Math.abs(request));
-        
-        
-        return (((total + val) <= 510) || v[0] === '-') ? val : (510 - total);
-        
-    }
-    
-    function addEVs(stat, val) {
-        
-        var eName = stat + '-input';
-        counter[stat] += +val;
-        changeValue(eName, counter[stat]);
-        
-    }
-    
-    function removeEVs(stat, val) {
-        
-        var eName = stat + '-input';
-        counter[stat] -= +val;
-        changeValue(eName, counter[stat]);
-        
-    }
-    
-    function changeValue(id, val) { document.getElementById(id).value = val;  }
-    function changeHeight(id, val) { document.getElementById(id).style.height = val; }
-    function changeText(id, val) { document.getElementById(id).innerHTML = val; }
-    function changeClass(id, val) { document.getElementById(id).className = val; }
-    
-    function updateInput(stat) {
-        
-        var id = stat + '-input';
-        changeValue(id, counter[stat]);
-        
-    }
-    
-    function updateGraph(stat) {
-        
-        var id = stat + '-bar',
-            height = (counter[stat] / 252) * 95 + 5 + "px";
-        
-        changeHeight(id, height);
-        
-    }
-    
-    function updateRemaining() {
-        
-        var text = "EVs Remaining: " + (510 - updateTotal()) + "/510";
-        changeText('ev-total', text);
-        
-    }
-    
-    function updateAll() { // really just called by the reset, otherwise it does faster, single updates
-        
-        var stat;
-        
-        for (stat in counter) {
-            updateInput(stat);
-            updateGraph(stat);
+        switch (id) {
+        case 'mode':
+            self.mode = !self.mode;
+            self.updateButtons();
+            break;
+        case 'reset':
+            Object.keys(self.stats).forEach(function (k) {
+                self.stats[k] = 0;
+                document.getElementById(k + '-input').value = 0;
+                document.getElementById(k + '-bar').style.height = 0;
+            });
+            break;
+        case 'undo':
+            if (self.log.length) { self.updateValues(self.log.pop(), true); }
+            break;
+        default:
+            return false;
         }
         
-        updateRemaining();
+    };
+
+    // intializes the tracker with event listeners
+    self.build = function () {
         
-    }
-    
-    function updateButtons() {
-        
-        var add1 = (altMode) ? 4 : updateModifiers(1),
-            add2 = (altMode) ? 8 : updateModifiers(2),
-            add3 = (altMode) ? 12 : updateModifiers(3);
-        
-        for (var i = 0, j = add1Buttons.length; i < j; i++) {
-            add1Buttons[i].innerHTML = '+' + add1;
-        }
-        
-        for (var i = 0, j = add2Buttons.length; i < j; i++) {
-            add2Buttons[i].innerHTML = '+' + add2;
-        }
-        
-        for (var i = 0, j = add3Buttons.length; i < j; i++) {
-            add3Buttons[i].innerHTML = '+' + add3;
-        }
-        
-    }
-    
-    function updateModifiers(type) {
-        
-        var a = type,
-            b = modifiers.power,
-            c = modifiers.pokerus,
-            d = modifiers.brace,
-            e = modifiers.hordes;
-        
-        // all modifiers are binary, so this is pretty easy
-        return (a + (b * 4)) * (1 + c) * (1 + d) * (1 + (e * 4));
-    }
-    
-    function updateTotal() {
-        
-        var stat,
-            total = 0;
-        
-        for (stat in counter) {
-            total += counter[stat];
-        }
-        
-        return total;
-        
-    }
-    
-});
+        // manual keyboard input
+        Object.keys(self.inputs).forEach(function (k) {
+            self.inputs[k].addEventListener('keyup', self.updateValues);
+        });
+
+        // clicking +1, +2, +3, and -10 buttons
+        Object.keys(self.buttons).forEach(function (k) {
+            self.self.buttons[k].addEventListener('click', self.updateValues);
+        });
+
+        // clicking multipliers
+        Object.keys(self.toggles).forEach(function (k) {
+            self.toggles[k].addEventListener('click', self.updateModifier);
+        });
+
+        // clicking mode switch, undo, and reset
+        Object.keys(self.tools).forEach(function (k) {
+            self.tools[k].addEventListener('click', self.updateState);
+        });
+
+    };
+
+    return {
+        build: self.build
+    };
+
+}(this));
+
+document.addEventListener('DOMContentLoaded', Tracker.build);
