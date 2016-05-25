@@ -50,8 +50,6 @@ var Tracker = (function (self) {
                 var oRequest = oLimits(request),
                     net = self.stats[id] + oRequest;
                 
-                //alert(oLimits(request));
-                
                 return (net < 0) ? -self.stats[id] :
                         ((net > 252) ? (252 - self.stats[id]) : oRequest);
                 
@@ -153,6 +151,8 @@ var Tracker = (function (self) {
         switch (id) {
         case 'mode':
             self.mode = !self.mode;
+            document.getElementById('mode').innerHTML = 
+                'Switch to ' + ((self.mode) ? 'Super' : 'Battle') + ' Training';
             self.updateButtons();
             break;
         case 'reset':
