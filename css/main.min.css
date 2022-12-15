@@ -1,1 +1,349 @@
-.stat .button,.tracker-buttons .button{transition:.1s background-color ease;cursor:pointer}.row:after,.stat:after,.tracker-buttons:after,.visual .graph-wrapper:after,q:after,q:before{content:''}.stat .button,.stat .name,.stat input,.title,.visual .counter{text-align:center}blockquote,body,code,dd,div,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,input,legend,li,ol,p,pre,td,textarea,th,ul{margin:0;padding:0}fieldset,img{border:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:400}abbr,acronym{border:0;font-variant:normal}input,select,textarea{font-family:inherit;font-size:inherit;font-weight:inherit}legend{color:#000}html{background:#f7f7f7;color:#555;font-family:Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;min-width:320px;overflow-x:hidden}.logo,.title h2,a{color:#777}a{text-decoration:none}.wrapper{max-width:1200px;margin:0 auto}.row{padding:0 20px}.row:after{display:block;clear:both}.title{border-bottom:5px solid #777;margin:-40px 0 40px}.title h2{display:inline-block;font-size:24px;position:relative;top:27px;background-color:#f7f7f7;padding:10px 20px;font-weight:700}.button{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.navigation{background-color:#fff;height:100px;text-transform:uppercase;font-weight:700}.github-banner{position:absolute;top:0;right:0}.logo{height:100px;line-height:100px;font-size:32px;padding-left:45px;background:url(../img/logo.png) left center no-repeat}.tool{padding:40px 0;background-color:#f7f7f7}.tracker{float:right;width:66.7%}.tracker-buttons{margin:0 0 20px 60px}.tracker-buttons:after{display:block;clear:both}.tracker-buttons .button{float:right;display:inline-block;height:48px;padding:0 20px;border-bottom:2px solid rgba(0,0,0,.2);color:#fff;font-size:20px;line-height:48px}.button#mode{float:left;background-color:#69af69}.button#mode:hover{background-color:#569056}.button#undo{margin-right:20px;background-color:#5c9fbc}.button#reset:hover{background-color:#ac6666}.button#reset{background-color:#d27b7b}.button#undo:hover{background-color:#4b839b}.stat{height:50px;margin:0 0 12px 60px;background-color:#eee}.stat:last-child{margin-bottom:0}.stat:after{display:block;clear:both}.stat>div,.stat>input{display:block;float:left;height:50px;font-size:18px;line-height:50px}.stat .name{width:170px;color:#777}.stat input{width:70px;padding:0 10px;border:0;background:#fff;color:#999}.stat .button{margin-left:20px;width:60px;background-color:#777;color:#fff}.stat .button:last-child{float:right;background-color:#aaa}.stat .button:hover{background-color:#555}.panel{width:33.3%;float:left}.visual{position:relative;margin-bottom:40px}.visual .counter{height:48px;font-size:20px;line-height:48px;color:#fff;background-color:#777;border-bottom:2px solid rgba(0,0,0,.2)}.visual .graph-wrapper:after{display:block;clear:both}.visual .bar-wrapper{float:left;width:16.66%;height:150px;position:relative;text-align:center}.visual .bar-wrapper .bar{width:50%;min-height:5px;position:absolute;bottom:30px;left:25%;background-color:#5c9fbc}.visual .bar-wrapper .legend{width:100%;position:absolute;bottom:0;left:0}.multipliers{position:relative}.multipliers.off{cursor:help}.multipliers.off:hover:after{content:'Multipliers only affect EV gains through battle.';display:block;position:absolute;z-index:10;padding:5px 10px;width:200px;top:50%;left:calc(50% - 100px);background-color:#fff;box-shadow:0 0 2px #000}.multiplier-toggle{margin-bottom:11px}.multipliers.off .multiplier-toggle{opacity:.3}.multiplier-toggle:after{content:'';display:block;clear:both}.multiplier-toggle .name{float:left;width:calc(100% - 100px);height:23px;line-height:23px;color:#aaa;font-size:20px}.multiplier-toggle.on .name{color:#666}.multiplier-toggle .switch{float:right;width:98px;height:25px;background-color:#d27b7b;cursor:pointer;position:relative}.multipliers.off .multiplier-toggle .switch{cursor:help}.multiplier-toggle.on .switch{text-align:right;background-color:#69af69}.multiplier-toggle .switch div{display:inline-block;height:23px;border:2px solid rgba(0,0,0,.2);border-top:0;border-left:0;background-color:#fff;width:40px}.suggestions,.suggestions .title h2{background-color:#eee}.suggestions{padding:60px 0 40px}.helpful-links,.training-areas{width:calc(50% - 20px);float:left;text-align:center}.helpful-links img,.training-areas img{height:98px;width:98px;margin-bottom:13px}.training-areas{margin-right:40px}.helpful-links a{display:inline-block;margin-bottom:14px}.helpful-links a:hover{text-decoration:underline;color:#555}.area{padding:7px 0;color:#777}.area span{font-weight:700;color:#555}@media only screen and (max-width:1100px){.tracker .stat .name{width:100px}.tracker .stat .name span{display:none}.tracker .stat input{width:50px}}@media only screen and (max-width:1000px){.tracker-buttons .button{font-size:16px;padding:0 15px}}@media only screen and (max-width:900px){.tracker .stat,.tracker-buttons{margin-left:0}.navigation{height:70px}.navigation .logo{font-size:24px;line-height:70px;height:70px}.github-banner img{height:100px}.tracker{width:100%;float:none;margin-bottom:20px}.tracker-buttons .button{font-size:20px;padding:0 20px}.tracker .stat .name{width:170px}.tracker .stat .name span{display:inline}.tracker .stat input{width:70px}.panel{width:100%;float:none}.visual .graph-wrapper{display:none}.visual #ev-total{margin:30px 0}.visual{margin-bottom:0}.suggestions{padding-bottom:10px}}@media only screen and (max-width:700px){.github-banner img{height:90px}.tool{padding:20px 0}.tracker-buttons .button{font-size:16px;padding:0 15px}.tracker .stat .name{width:100px}.tracker .stat .name span{display:none}.tracker .stat input{width:50px}.helpful-links,.training-areas{float:none;width:100%;margin:0 0 40px}}@media only screen and (max-width:560px){.button#undo{margin-right:10px}.tracker .stat .name{width:70px;font-size:16px}.tracker .stat input{width:40px}.tracker .stat .button{font-size:16px;margin-left:10px}}@media only screen and (max-width:480px){.tracker .stat,.tracker .stat .button,.tracker .stat .name,.tracker .stat input{line-height:40px;height:40px}.tracker .stat input{width:30px;font-size:16px}.tracker .stat .button{margin:0 0 0 10px;font-size:16px;width:50px}.button#reset,.button#undo{margin-top:20px;width:calc(50% - 40px);text-align:center}.button#undo{margin-right:20px}.button#mode{display:block;width:calc(100% - 30px);text-align:center;float:none}}@media only screen and (max-width:420px){.tracker .stat .button{margin-left:5px}.tracker .stat .button.add-1{margin-left:calc(100% - 282px)}.tracker .stat .button:last-child{display:none}}@media only screen and (max-width:350px){.navigation .logo{font-size:18px}}
+/* YUI 3.5.0 reset.css (http://developer.yahoo.com/yui/3/cssreset/) - http://cssreset.com */
+
+html{color:#000;background:#FFF}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0}
+fieldset,img{border:0}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}
+q:before,q:after{content:''}
+abbr,acronym{border:0;font-variant:normal}
+input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit}
+input,textarea,select{*font-size:100%}
+legend{color:#000}
+
+/* General -------------------- */
+
+html { 
+    background-color: #f7f7f7;
+    color: #555;
+    font-family: Montserrat, "Helvetica Neue", Helvetica,Arial, sans-serif;
+    min-width: 320px;
+    overflow-x: hidden;
+}
+
+a { text-decoration: none; color: #777; }
+
+.wrapper { max-width: 1200px; margin: 0 auto;}
+
+.row { padding: 0 20px; }
+.row:after { content: ''; display: block; clear: both; }
+
+.title { border-bottom: 2px solid #777; text-align: left; margin: -40px 0 40px 0; }
+.title h2 { 
+    display: inline-block; 
+    font-size: 24px; 
+    position: relative; 
+    top: 27px; 
+    background-color: #f7f7f7; 
+    padding: 10px 20px 10px 0px; 
+    color: #777; 
+    font-weight: bold; }
+
+.button {  
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+/* Header Bar / Logo ---------------------- */
+
+.navigation { background-color: #fff; height: 100px; text-transform: uppercase; font-weight: bold; }
+
+.github-banner { position: absolute; top: 0; right: 0; }
+
+.logo {
+    height: 100px;
+    line-height: 90px;
+    font-size: 32px;
+    padding-left: 45px;
+    background: url('../img/logo.png') no-repeat left center;
+    color: #777;
+}
+.logo-sub
+{
+    font-size:12px;
+    padding-left:45px;
+    margin-top: -40px;
+}
+
+/* EV tracker / Options ------------------ */
+
+.tool { padding: 40px 0; background-color: #f7f7f7; }
+
+.tracker { float: right; width: 66.7%; }
+
+.tracker-buttons { margin: 0 0 20px 60px; }
+.tracker-buttons:after { content: ''; display: block; clear: both; }
+.tracker-buttons .button {
+    float: right;
+    display: inline-block;
+    height: 48px;
+    padding: 0 20px;
+    border-bottom: 2px solid rgba(0,0,0,0.2);
+    color: #fff;
+    font-size: 20px;
+    line-height: 48px;
+    cursor: pointer;
+    transition: .1s background-color ease;
+}
+.button#mode { float: left; background-color: #69af69; }
+.button#mode:hover { background-color: #569056; }
+.button#undo { margin-right: 20px; background-color: #5c9fbc; }
+.button#reset:hover { background-color: #ac6666; }
+.button#reset { background-color: #d27b7b; }
+.button#undo:hover { background-color: #4b839b; }
+
+.stat { height: 50px; margin: 0 0 12px 60px; background-color: #eee; }
+.stat:last-child { margin-bottom: 0; }
+.stat:after { content:''; display: block; clear: both; }
+.stat > div, .stat > input {
+    display: block;
+    float: left;
+    height: 50px;
+    font-size: 18px;
+    line-height: 50px;
+}
+.stat .name { width: 170px; text-align: center; color: #777; }
+.stat input {
+    width: 70px;
+    padding: 0 10px;
+    border: 0;
+    background: #ffffff;
+    text-align: center;
+    color: #999;
+}
+.stat .button {
+    margin-left: 20px;
+    width: 60px;
+    text-align: center;
+    background-color: #777;
+    color: #fff;
+    transition: .1s background-color ease;
+    cursor: pointer;
+}
+.stat .button:last-child { float: right; background-color: #aaa; }
+.stat .button:hover { background-color: #555; }
+
+.panel { width: 33.3%; float: left; }
+.visual { position: relative; margin-bottom: 40px; }
+.visual .counter {
+    height: 48px;
+    font-size: 20px;
+    line-height: 48px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #777777;
+    border-bottom: 2px solid rgba(0,0,0,0.2);
+}
+.visual .graph-wrapper:after { content: ''; display: block; clear: both; }
+.visual .bar-wrapper { 
+    float: left;
+    width: 16.66%;
+    height: 150px;
+    position: relative;
+    text-align: center;
+}
+.visual .bar-wrapper .bar {
+    width: 50%;
+    min-height: 5px;
+    position: absolute;
+    bottom: 30px;
+    left: 25%;
+    background-color: #5c9fbc;
+}
+.visual .bar-wrapper .legend { width: 100%; position: absolute; bottom: 0; left: 0; }
+
+.multipliers {
+    position: relative;
+}
+.multipliers.off { cursor: help; }
+.multipliers.off:hover:after {
+    content: 'Multipliers only affect EV gains through battle.';
+    display: block;
+    position: absolute;
+    z-index: 10;
+    padding: 5px 10px;
+    width: 200px;
+    top: 50%;
+    left: calc(50% - 100px);
+    background-color: #fff;
+    box-shadow: 0 0 2px #000;
+}
+.multiplier-toggle { margin-bottom: 11px; }
+.multipliers.off .multiplier-toggle{
+    opacity: .3;
+}
+.multiplier-toggle:after { content: ''; display: block; clear: both; }
+.multiplier-toggle .name {
+    float: left;
+    width: calc(100% - 100px);
+    height: 23px;
+    line-height: 23px;
+    color: #aaa;
+    font-size: 20px;
+}
+.multiplier-toggle.on .name { color: #666; }
+.multiplier-toggle .switch {
+    float: right;
+    width: 98px;
+    height: 25px;
+    background-color: #d27b7b;
+    cursor: pointer;
+    position: relative;
+}
+.multipliers.off .multiplier-toggle .switch { cursor: help; }
+.multiplier-toggle.on .switch {
+    text-align: right;
+    background-color: #40aa40;
+}
+.multiplier-toggle .switch div {
+    display: inline-block;
+    height: 23px;
+    border: 2px solid rgba(0,0,0,0.2);
+    border-top: 0;
+    border-left: 0;
+    background-color: #fff;
+    width: 40px;
+}
+/*Area Training*/
+.table-area
+{
+    display:flex;
+    border:solid 1px red;
+    width:100%;
+    text-align: left;
+    
+}
+.left-stat
+{
+    display: inline;
+    width:30%;
+    text-align:center;
+    border:solid 1px red;
+    padding:10px 0px;
+    font-weight: 900;
+
+}
+.right-mon
+{
+    display:inline;
+    padding:10px 0px;
+    border:solid 1px red;
+    width:70%;
+}
+
+/* Suggestions area --------------------- */
+
+.suggestions { background-color: #eee; padding: 60px 0 40px 0; }
+
+.suggestions .title h2 { background-color: #eee; }
+
+.training-areas, .helpful-links { width: calc(50% - 20px); float: left; text-align: left; }
+
+.training-areas img, .helpful-links img { height: 98px;  width: 98px; margin-bottom: 13px; text-align:center;}
+
+.training-areas { margin-right: 40px; }
+
+.helpful-links a { display: inline-block; margin-bottom: 14px; }
+.helpful-links {margin-bottom:30px;}
+.helpful-links a:hover { text-decoration: underline; color: #555; }
+
+.area { padding: 16px 16px; color: #777; text-align:left;background:#FBFBFB;margin-bottom:5px;}
+.area span { font-weight: bold; color: #555;padding:3px;}
+
+.berry {padding:7px 0;}
+.pokemon-image img {max-height:40px;height:auto;width:auto;text-align:left;margin-top:10px;}
+.pokemon-image{padding:5px 0px;}
+.pokemon {padding:10px 0px;}
+
+/* Media queries ----------------- */
+
+
+@media only screen and (max-width: 1100px) {
+    
+    .tracker .stat .name { width: 100px; }
+    .tracker .stat .name span { display: none; }
+    .tracker .stat input { width: 50px; }
+    
+}
+
+@media only screen and (max-width: 1000px) {
+    
+    .tracker-buttons .button { font-size: 16px; padding: 0 15px; }
+    
+}
+
+@media only screen and (max-width: 900px) {
+    
+    .navigation { height: 70px; }
+    .navigation .logo {font-size: 24px; line-height: 70px; height: 70px;}
+    .github-banner img { height: 100px; }
+    
+    .tracker { width: 100%; float: none; margin-bottom: 20px; }
+    .tracker-buttons { margin-left: 0; }
+    .tracker-buttons .button { font-size: 20px; padding: 0 20px; }
+    .tracker .stat { margin-left: 0; }
+    .tracker .stat .name { width: 170px; }
+    .tracker .stat .name span { display: inline; }
+    .tracker .stat input { width: 70px; }
+    
+    .panel { width: 100%; float: none; }
+    .visual .graph-wrapper {display: none;}
+    .visual #ev-total {margin: 30px 0;}
+    .visual { margin-bottom: 0; }
+    
+    .suggestions { padding-bottom: 10px; }
+    .logo-sub {margin-top:-25px;}
+}
+
+@media only screen and (max-width: 700px) {
+    
+    .github-banner img { height: 90px; }
+    
+    .tool { padding: 20px 0; }
+    .tracker-buttons .button { font-size: 16px; padding: 0 15px; }
+    .tracker .stat .name { width: 100px; }
+    .tracker .stat .name span { display: none; }
+    .tracker .stat input { width: 50px; }
+    
+    .training-areas, .helpful-links { float: none; width: 100%; margin: 0 0 40px 0; }
+    
+}
+
+@media only screen and (max-width: 560px) {
+    
+    .button#undo { margin-right: 10px; }
+    .tracker .stat .name { width: 70px; font-size: 16px; }
+    .tracker .stat input { width: 40px; }
+    .tracker .stat .button { font-size: 16px; margin-left: 10px; }
+ 
+    
+}
+
+@media only screen and (max-width: 480px) {
+    
+    .tracker .stat { line-height: 40px; height: 40px;}
+    .tracker .stat .name { line-height: 40px; height: 40px;}
+    .tracker .stat input { width: 30px; font-size: 16px; line-height: 40px; height: 40px;}
+    .tracker .stat .button { margin: 0 0 0 10px; font-size: 16px; line-height: 40px; height: 40px; width: 50px; }
+    .button#undo, .button#reset { margin-top: 20px; width: calc(50% - 40px); text-align: center; }
+    .button#undo { margin-right: 20px; }
+    .button#mode {  display: block; width: calc(100% - 30px); text-align: center; float: none; }
+    .logo-sub {display:none;}
+    
+}
+
+@media only screen and (max-width: 420px) {
+    
+    .tracker .stat .button { margin-left: 5px; }
+    .tracker .stat .button.add-1 { margin-left: calc(100% - 282px); }
+    .tracker .stat .button:last-child { display: none; }
+    
+}
+
+@media only screen and (max-width: 350px) {
+    
+    .navigation .logo { font-size: 18px; }
+    
+}

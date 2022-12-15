@@ -221,6 +221,8 @@ a { text-decoration: none; color: #777; }
 .area { padding: 7px 0; color: #777; }
 .area span { font-weight: bold; color: #555; }
 
+.berry {padding:7px 0;}
+
 /* Media queries ----------------- */
 
 

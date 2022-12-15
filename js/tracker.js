@@ -83,7 +83,7 @@ var Tracker = (function (self) {
         var pokerus = (self.modifiers.pokerus) ? 2 : 1,
             hordes = (self.modifiers.hordes) ? 5 : 1,
             brace = (self.modifiers.brace) ? 2 : 1,
-            power = (self.modifiers.power) ? 4 : 0,
+            power = (self.modifiers.power) ? 8 : 0,
             
             battleUpdater = function (value) {
                 return '+' + (value + power) * pokerus * hordes * brace;
